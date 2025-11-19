@@ -35,7 +35,7 @@ struct NumberGenerator {
             operators.append(op)
         }
 
-        return Calculation(numbers: numbers, operators: operators)
+        return Calculation(numbers: numbers, operators: operators, maxDigits: maxDigits)
     }
 
     /// 指定された桁数のランダムな正の自然数を生成
@@ -49,6 +49,7 @@ struct NumberGenerator {
 struct Calculation {
     let numbers: [Int]
     let operators: [Operator]
+    let maxDigits: Int
 
     /// 計算式の文字列表現（例：12345678 + 23456789 - 1234567）
     var expressionString: String {

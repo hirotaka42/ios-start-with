@@ -153,4 +153,9 @@ class JapaneseVoiceReader {
     func stop() {
         synthesizer.stopSpeaking(at: .immediate)
     }
+
+    /// 再生中かどうか
+    func isSpeaking() -> Bool {
+        return synthesizer.isSpeaking
+    }
 }
