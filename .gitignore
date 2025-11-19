@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,azurite,azurefunctions,xcode,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,azurite,azurefunctions,xcode,visualstudiocode
 
+###
+**/docs/*
+
 ### AzureFunctions ###
 # Azure Functions localsettings file
 local.settings.json
@@ -42,7 +45,8 @@ __azurite_db_table_extent__.json
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
