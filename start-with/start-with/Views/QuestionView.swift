@@ -3,6 +3,9 @@ import SwiftUI
 struct QuestionView: View {
     @ObservedObject var appState: AppState
     @State private var speechTimer: Timer?
+    @State private var showNextConfirmDialog = false
+    @State private var showBackActionDialog = false
+    @State private var wasSpakingWhenDialogShown = false
 
     var body: some View {
         VStack(spacing: 20) {
@@ -89,7 +92,7 @@ struct QuestionView: View {
 
                 // ボタン
                 HStack(spacing: 15) {
-                    Button(action: { appState.backToSettings() }) {
+                    Button(action: { showBackActionDialog = true }) {
                         Text("戻る")
                             .font(.system(size: 18, weight: .semibold))
                             .frame(maxWidth: .infinity)
@@ -103,7 +106,21 @@ struct QuestionView: View {
                             )
                     }
 
-                    Button(action: { appState.nextQuestion() }) {
+                    Button(action: {
+                        // 答えが表示されていない場合は何もしない
+                        guard appState.isAnswerRevealed else {
+                            return
+                        }
+
+                        if appState.isSpeaking {
+                            wasSpakingWhenDialogShown = true
+                            DispatchQueue.main.async {
+                                showNextConfirmDialog = true
+                            }
+                        } else {
+                            appState.nextQuestion()
+                        }
+                    }) {
                         Text("次の問題")
                             .font(.system(size: 18, weight: .semibold))
                             .frame(maxWidth: .infinity)
@@ -127,8 +144,8 @@ struct QuestionView: View {
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.white.opacity(0.3), lineWidth: 1)
                             )
+                            .opacity(appState.isAnswerRevealed ? 1.0 : 0.5)
                     }
-                    .disabled(!appState.isAnswerRevealed)
                 }
                 .padding()
             }
@@ -138,6 +155,52 @@ struct QuestionView: View {
             speechTimer?.invalidate()
             speechTimer = nil
             appState.stopSpeech()
+        }
+        .actionSheet(isPresented: $showNextConfirmDialog) {
+            ActionSheet(
+                title: Text("確認"),
+                message: Text("音声が再生中です。どうしますか？"),
+                buttons: [
+                    .cancel(Text("キャンセル")) {
+                        wasSpakingWhenDialogShown = false
+                    },
+                    .default(Text("音声を停止して次の問題へ")) {
+                        appState.stopSpeech()
+                        speechTimer?.invalidate()
+                        speechTimer = nil
+                        wasSpakingWhenDialogShown = false
+                        appState.nextQuestion()
+                    },
+                    .default(Text("音声を停止して戻る")) {
+                        appState.stopSpeech()
+                        speechTimer?.invalidate()
+                        speechTimer = nil
+                        wasSpakingWhenDialogShown = false
+                        appState.backToSettings()
+                    }
+                ]
+            )
+        }
+        .actionSheet(isPresented: $showBackActionDialog) {
+            ActionSheet(
+                title: Text("どうしますか？"),
+                message: Text("本当に戻りますか？"),
+                buttons: [
+                    .cancel(Text("キャンセル")),
+                    .default(Text("前の画面に戻る")) {
+                        appState.stopSpeech()
+                        speechTimer?.invalidate()
+                        speechTimer = nil
+                        appState.backToSettings()
+                    },
+                    .destructive(Text("ホーム画面へ")) {
+                        appState.stopSpeech()
+                        speechTimer?.invalidate()
+                        speechTimer = nil
+                        appState.backToSettings()
+                    }
+                ]
+            )
         }
     }
 
@@ -250,10 +313,8 @@ struct AnswerTapView: View {
 
     /// テキストの長さに応じてフォントサイズを計算
     private func calculateFontSize(for text: String) -> CGFloat {
-        let maxWidth = UIScreen.main.bounds.width - 60 // パディングとマージンを考慮
         let characterCount = text.count
 
-        // 1文字あたりの幅を計算（monospaced fontで約8ptあたり6px）
         let baseSize: CGFloat = 32
         let minSize: CGFloat = 16
         let maxSize: CGFloat = 32

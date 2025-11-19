@@ -1,0 +1,66 @@
+{
+  "" : {
+    "const-values" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/start-with-primary.swiftconstvalues",
+    "dependencies" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/start-with-primary.d",
+    "diagnostics" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/start-with-primary.dia",
+    "emit-module-dependencies" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/start-with-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/start-with-primary-emit-module.dia",
+    "pch" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/start-with-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/start-with-primary.swiftdeps"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/AppDelegate.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/AppDelegate.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/AppDelegate.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/AppDelegate.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/ContentView.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/Models/AppState.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/AppState.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/AppState.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/AppState.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/Models/JapaneseVoiceReader.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/JapaneseVoiceReader.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/JapaneseVoiceReader.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/JapaneseVoiceReader.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/Models/NumberFormatter.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/NumberFormatter.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/NumberFormatter.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/NumberFormatter.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/Models/NumberGenerator.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/NumberGenerator.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/NumberGenerator.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/NumberGenerator.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/Views/LiquidGlassBackground.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/LiquidGlassBackground.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/LiquidGlassBackground.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/LiquidGlassBackground.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/Views/QuestionView.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/QuestionView.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/QuestionView.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/QuestionView.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/Views/ResultView.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/ResultView.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/ResultView.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/ResultView.o"
+  },
+  "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/start-with/Views/SettingsView.swift" : {
+    "index-unit-output-path" : "/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/user/src/github.com/hirotaka42/ios-start-with/start-with/DerivedData/Build/Intermediates.noindex/start-with.build/Release-iphoneos/start-with.build/Objects-normal/arm64/SettingsView.o"
+  }
+}
