@@ -1,15 +1,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var appState = AppState()
+
     var body: some View {
-        VStack {
-            Text("Hello, world!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
+        ZStack {
+            // Liquid Glass Background
+            LiquidGlassBackground()
+
+            VStack {
+                switch appState.currentScreen {
+                case .settings:
+                    SettingsView(appState: appState)
+                case .question:
+                    QuestionView(appState: appState)
+                case .result:
+                    ResultView(appState: appState)
+                }
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(UIColor.systemBackground))
+        .preferredColorScheme(nil)
     }
 }
 
