@@ -9,6 +9,7 @@ class AppState: ObservableObject {
     @Published var currentCalculation: Calculation? = nil
     @Published var isAnswerRevealed: Bool = false
     @Published var showNumbersInQuestion: Bool = false
+    @Published var isSpeaking: Bool = false
 
     let voiceReader = JapaneseVoiceReader()
 
@@ -37,6 +38,12 @@ class AppState: ObservableObject {
     /// 設定画面に戻る
     func backToSettings() {
         currentScreen = .settings
+    }
+
+    /// 音声再生を停止
+    func stopSpeech() {
+        voiceReader.stop()
+        isSpeaking = false
     }
 }
 
