@@ -14,7 +14,8 @@ class VoiceVOXPlayer: NSObject, AVAudioPlayerDelegate {
         try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
 
         // AVAudioPlayerでWAVデータを再生
-        audioPlayer = try AVAudioPlayer(data: audioData)
+        // 音声フォーマットを正しく認識するため、fileTypeParameterを指定
+        audioPlayer = try AVAudioPlayer(data: audioData, fileTypeHint: AVFileType.wav.rawValue)
         audioPlayer?.delegate = self
         audioPlayer?.prepareToPlay()
 

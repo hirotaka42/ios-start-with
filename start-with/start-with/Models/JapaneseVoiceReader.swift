@@ -19,7 +19,7 @@ class JapaneseVoiceReader {
 
     /// 計算式を日本語テキストに変換
     private func convertCalculationToJapanese(_ calculation: Calculation) -> String {
-        var text = ""
+        var text = "ねがいましては、"
 
         // 最初の数値を読む
         let firstNumberText = convertNumberToJapanese(calculation.numbers[0])
@@ -78,47 +78,71 @@ class JapaneseVoiceReader {
         let length = digits.count
 
         var result = ""
+        var currentIndex = 0
 
         // 13桁以上：兆グループ処理
         if length >= 13 {
             let trillionLength = length - 12
             let trillionDigits = Array(digits[0..<trillionLength])
-            result += readGroupDigits(trillionDigits, isLastGroup: false)
-            result += "ちょう"
+            // 兆が「1」だけの場合は「いっちょう」と促音を付ける
+            if trillionDigits == [1] {
+                result += "いっ" + "ちょう"
+            } else if trillionDigits.count == 1 && trillionDigits[0] == 4 {
+                // 4兆の場合は「よんちょう」
+                result += "よん" + "ちょう"
+            } else {
+                result += readGroupDigits(trillionDigits, isLastGroup: false)
+                result += "ちょう"
+            }
+            currentIndex = trillionLength
         }
 
         // 9～12桁：億グループ処理
         if length >= 9 {
-            let occStartIndex = length >= 13 ? 0 : (length - 12)
+            let occStartIndex = currentIndex
             let occEndIndex = length - 8
+            let occEndIndexAdjusted = max(occStartIndex, occEndIndex)
 
-            if occStartIndex < occEndIndex {
-                let occDigits = Array(digits[occStartIndex..<occEndIndex])
+            if occStartIndex < occEndIndexAdjusted {
+                let occDigits = Array(digits[occStartIndex..<occEndIndexAdjusted])
                 let occValue = occDigits.reduce(0) { $0 * 10 + $1 }
                 if occValue > 0 {
-                    result += readGroupDigits(occDigits, isLastGroup: false)
-                    result += "おく"
+                    // 8億の場合は「はっぴゃくおく」ではなく「はちおく」
+                    if occDigits.count == 1 && occDigits[0] == 8 {
+                        result += "はち" + "おく"
+                    } else {
+                        result += readGroupDigits(occDigits, isLastGroup: false)
+                        result += "おく"
+                    }
                 }
             }
+            currentIndex = occEndIndexAdjusted
         }
 
         // 5～8桁：万グループ処理
         if length >= 5 {
-            let manStartIndex = length >= 9 ? 0 : (length - 8)
+            let manStartIndex = currentIndex
             let manEndIndex = length - 4
+            let manEndIndexAdjusted = max(manStartIndex, manEndIndex)
 
-            if manStartIndex < manEndIndex {
-                let manDigits = Array(digits[manStartIndex..<manEndIndex])
+            if manStartIndex < manEndIndexAdjusted {
+                let manDigits = Array(digits[manStartIndex..<manEndIndexAdjusted])
                 let manValue = manDigits.reduce(0) { $0 * 10 + $1 }
                 if manValue > 0 {
-                    result += readGroupDigits(manDigits, isLastGroup: false)
-                    result += "まん"
+                    // 4万の場合は「よんまん」
+                    if manDigits.count == 1 && manDigits[0] == 4 {
+                        result += "よん" + "まん"
+                    } else {
+                        result += readGroupDigits(manDigits, isLastGroup: false)
+                        result += "まん"
+                    }
                 }
             }
+            currentIndex = manEndIndexAdjusted
         }
 
         // 1～4桁：最後のグループ処理
-        let finalStartIndex = max(0, length - 4)
+        let finalStartIndex = currentIndex
         let finalDigits = Array(digits[finalStartIndex..<length])
         result += readGroupDigits(finalDigits, isLastGroup: true)
 
@@ -142,7 +166,14 @@ class JapaneseVoiceReader {
                 if digit == 1 && !isLastGroup {
                     result += "せん"
                 } else if digit == 1 && isLastGroup {
-                    result += "いち" + "せん"
+                    // 1千の場合は「いっせん」と促音を付ける
+                    result += "いっ" + "せん"
+                } else if digit == 3 && isLastGroup {
+                    // 3千の場合は「さんぜん」
+                    result += "さんぜん"
+                } else if digit == 8 && isLastGroup {
+                    // 8千の場合は「はっせん」と促音を付ける
+                    result += "はっ" + "せん"
                 } else {
                     result += readDigitForPosition(digit, position: position)
                 }
