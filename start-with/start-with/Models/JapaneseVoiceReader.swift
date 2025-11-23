@@ -108,10 +108,10 @@ class JapaneseVoiceReader {
         // 9～12桁：億グループ処理
         if length >= 9 {
             let occStartIndex = currentIndex
-            let occEndIndex = length - 8
+            let occEndIndex = min(length - 8, length)
             let occEndIndexAdjusted = max(occStartIndex, occEndIndex)
 
-            if occStartIndex < occEndIndexAdjusted {
+            if occStartIndex < occEndIndexAdjusted && occStartIndex >= 0 && occEndIndexAdjusted <= length {
                 let occDigits = Array(digits[occStartIndex..<occEndIndexAdjusted])
                 let occValue = occDigits.reduce(0) { $0 * 10 + $1 }
                 if occValue > 0 {
@@ -123,36 +123,38 @@ class JapaneseVoiceReader {
                         result += "おく"
                     }
                 }
+                currentIndex = occEndIndexAdjusted
             }
-            currentIndex = occEndIndexAdjusted
         }
 
         // 5～8桁：万グループ処理
         if length >= 5 {
             let manStartIndex = currentIndex
-            let manEndIndex = length - 4
+            let manEndIndex = min(length - 4, length)
             let manEndIndexAdjusted = max(manStartIndex, manEndIndex)
 
-            if manStartIndex < manEndIndexAdjusted {
+            if manStartIndex < manEndIndexAdjusted && manStartIndex >= 0 && manEndIndexAdjusted <= length {
                 let manDigits = Array(digits[manStartIndex..<manEndIndexAdjusted])
                 let manValue = manDigits.reduce(0) { $0 * 10 + $1 }
                 if manValue > 0 {
-                    // 4万の場合は「よんまん」
+                    // 4万の場合は「よんまん」と単一の単語として処理
                     if manDigits.count == 1 && manDigits[0] == 4 {
-                        result += "よん" + "まん"
+                        result += "よんまん"
                     } else {
                         result += readGroupDigits(manDigits, isLastGroup: false)
                         result += "まん"
                     }
                 }
+                currentIndex = manEndIndexAdjusted
             }
-            currentIndex = manEndIndexAdjusted
         }
 
         // 1～4桁：最後のグループ処理
         let finalStartIndex = currentIndex
-        let finalDigits = Array(digits[finalStartIndex..<length])
-        result += readGroupDigits(finalDigits, isLastGroup: true)
+        if finalStartIndex < length {
+            let finalDigits = Array(digits[finalStartIndex..<length])
+            result += readGroupDigits(finalDigits, isLastGroup: true)
+        }
 
         return result
     }
@@ -194,10 +196,9 @@ class JapaneseVoiceReader {
                 }
             } else if position == 1 {
                 // 十の位
-                if digit == 1 && !isLastGroup {
+                if digit == 1 {
+                    // 十の位が1の場合は「じゅう」だけで十分（いちじゅう不要）
                     result += "じゅう"
-                } else if digit == 1 && isLastGroup {
-                    result += "いち" + "じゅう"
                 } else {
                     result += readDigitForTensPlace(digit) + "じゅう"
                 }
