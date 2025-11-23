@@ -16,9 +16,20 @@ class VoiceVOXClient {
         let speaker = speakerId ?? defaultSpeakerId
 
         // ステップ1: audio_query を取得
-        let audioQuery = try await createAudioQuery(text: text, speaker: speaker)
+        var audioQuery = try await createAudioQuery(text: text, speaker: speaker)
 
-        // ステップ2: 音声を合成
+        // ステップ2: 音声パラメータを調整
+        // speedScale: わずかに速度を上げて、音声の鮮明性を向上させ誤認識を防止
+        // intonationScale: 若干イントネーションを上げて、明確性を向上
+        if let speedScale = audioQuery["speedScale"] as? Double {
+            audioQuery["speedScale"] = speedScale * 0.95  // わずかに高速化
+        }
+        if let intonationScale = audioQuery["intonationScale"] as? Double {
+            let adjustedScale = max(0.5, min(2.0, intonationScale * 1.1))  // イントネーション微調整
+            audioQuery["intonationScale"] = adjustedScale
+        }
+
+        // ステップ3: 音声を合成
         let audioData = try await synthesizeVoice(audioQuery: audioQuery, speaker: speaker)
 
         return audioData
