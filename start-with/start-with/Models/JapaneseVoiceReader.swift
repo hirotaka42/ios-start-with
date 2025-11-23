@@ -1,7 +1,9 @@
 import AVFoundation
 
 class JapaneseVoiceReader {
-    private let synthesizer = AVSpeechSynthesizer()
+    private let voiceVOXClient = VoiceVOXClient()
+    private let voiceVOXPlayer = VoiceVOXPlayer()
+    @Published private(set) var isSpeakingValue = false
 
     /// 計算式を日本語で読み上げ
     func readCalculation(_ calculation: Calculation) {
@@ -106,33 +108,28 @@ class JapaneseVoiceReader {
         }
     }
 
-    /// テキストを音声で再生（指定秒数で完了）
+    /// テキストを音声で再生（VoiceVOX）
     func speakWithDuration(_ text: String, duration: Double) {
-        // 既存の再生を停止
-        if synthesizer.isSpeaking {
-            synthesizer.stopSpeaking(at: .immediate)
-        }
-
         // 空のテキストをチェック
         guard !text.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
 
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .duckOthers)
-            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+        isSpeakingValue = true
 
-            let utterance = AVSpeechUtterance(string: text)
-            utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
-            // 読み上げ速度の計算：duration秒で読み上げ完了するように調整
-            utterance.rate = calculateRate(text, duration: duration)
-            utterance.pitchMultiplier = 1.0
-            utterance.preUtteranceDelay = 0.0
-            utterance.postUtteranceDelay = 0.0
+        Task {
+            do {
+                // VoiceVOXで音声を合成
+                let audioData = try await voiceVOXClient.synthesize(text: text)
 
-            synthesizer.speak(utterance)
-        } catch {
-            print("Audio session error: \(error)")
+                // 音声を再生
+                try voiceVOXPlayer.play(audioData: audioData) {
+                    self.isSpeakingValue = false
+                }
+            } catch {
+                print("VoiceVOX error: \(error)")
+                isSpeakingValue = false
+            }
         }
     }
 
@@ -151,11 +148,12 @@ class JapaneseVoiceReader {
 
     /// 再生を停止
     func stop() {
-        synthesizer.stopSpeaking(at: .immediate)
+        voiceVOXPlayer.stop()
+        isSpeakingValue = false
     }
 
     /// 再生中かどうか
     func isSpeaking() -> Bool {
-        return synthesizer.isSpeaking
+        return voiceVOXPlayer.isPlaying()
     }
 }

@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D5A5B3E72B3D1C0000ABC123 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B3E62B3D1C0000ABC123; };
-		D5A5B3E92B3D1C0000ABC123 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B3E82B3D1C0000ABC123; };
-		D5A5B3EB2B3D1C0100ABC123 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A5B3EA2B3D1C0100ABC123; };
-		D5A5B3EE2B3D1C0100ABC123 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A5B3ED2B3D1C0100ABC123; };
-		D5A5B4001B3D1C0000ABC123 /* NumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B3FF1B3D1C0000ABC123; };
-		D5A5B4021B3D1C0000ABC123 /* JapaneseVoiceReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4011B3D1C0000ABC123; };
-		D5A5B4041B3D1C0000ABC123 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4031B3D1C0000ABC123; };
-		D5A5B4101B3D1C0000ABC123 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B40F1B3D1C0000ABC123; };
-		D5A5B4061B3D1C0000ABC123 /* LiquidGlassBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4051B3D1C0000ABC123; };
-		D5A5B4081B3D1C0000ABC123 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4071B3D1C0000ABC123; };
-		D5A5B40A1B3D1C0000ABC123 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4091B3D1C0000ABC123; };
-		D5A5B40C1B3D1C0000ABC123 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B40B1B3D1C0000ABC123; };
+		D5A5B3E72B3D1C0000ABC123 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B3E62B3D1C0000ABC123 /* AppDelegate.swift */; };
+		D5A5B3E92B3D1C0000ABC123 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B3E82B3D1C0000ABC123 /* ContentView.swift */; };
+		D5A5B3EB2B3D1C0100ABC123 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A5B3EA2B3D1C0100ABC123 /* Assets.xcassets */; };
+		D5A5B3EE2B3D1C0100ABC123 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5A5B3ED2B3D1C0100ABC123 /* Preview Assets.xcassets */; };
+		D5A5B4001B3D1C0000ABC123 /* start-with/Models/NumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B3FF1B3D1C0000ABC123 /* start-with/Models/NumberGenerator.swift */; };
+		D5A5B4021B3D1C0000ABC123 /* start-with/Models/JapaneseVoiceReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4011B3D1C0000ABC123 /* start-with/Models/JapaneseVoiceReader.swift */; };
+		D5A5B4041B3D1C0000ABC123 /* start-with/Models/AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4031B3D1C0000ABC123 /* start-with/Models/AppState.swift */; };
+		D5A5B4061B3D1C0000ABC123 /* LiquidGlassBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4051B3D1C0000ABC123 /* LiquidGlassBackground.swift */; };
+		D5A5B4081B3D1C0000ABC123 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4071B3D1C0000ABC123 /* SettingsView.swift */; };
+		D5A5B40A1B3D1C0000ABC123 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4091B3D1C0000ABC123 /* QuestionView.swift */; };
+		D5A5B40C1B3D1C0000ABC123 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B40B1B3D1C0000ABC123 /* ResultView.swift */; };
+		D5A5B4101B3D1C0000ABC123 /* start-with/Models/NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B40F1B3D1C0000ABC123 /* start-with/Models/NumberFormatter.swift */; };
+	D5A5B4121B3D1C0000ABC123 /* start-with/Models/VoiceVOXClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4111B3D1C0000ABC123 /* start-with/Models/VoiceVOXClient.swift */; };
+	D5A5B4141B3D1C0000ABC123 /* start-with/Models/VoiceVOXPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5B4131B3D1C0000ABC123 /* start-with/Models/VoiceVOXPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,14 +30,16 @@
 		D5A5B3EA2B3D1C0100ABC123 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5A5B3ED2B3D1C0100ABC123 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D5A5B3EF2B3D1C0100ABC123 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D5A5B3FF1B3D1C0000ABC123 /* NumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/NumberGenerator.swift"; sourceTree = SOURCE_ROOT; };
-		D5A5B4011B3D1C0000ABC123 /* JapaneseVoiceReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/JapaneseVoiceReader.swift"; sourceTree = SOURCE_ROOT; };
-		D5A5B4031B3D1C0000ABC123 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/AppState.swift"; sourceTree = SOURCE_ROOT; };
-		D5A5B40F1B3D1C0000ABC123 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/NumberFormatter.swift"; sourceTree = SOURCE_ROOT; };
+		D5A5B3FF1B3D1C0000ABC123 /* start-with/Models/NumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/NumberGenerator.swift"; sourceTree = SOURCE_ROOT; };
+		D5A5B4011B3D1C0000ABC123 /* start-with/Models/JapaneseVoiceReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/JapaneseVoiceReader.swift"; sourceTree = SOURCE_ROOT; };
+		D5A5B4031B3D1C0000ABC123 /* start-with/Models/AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/AppState.swift"; sourceTree = SOURCE_ROOT; };
 		D5A5B4051B3D1C0000ABC123 /* LiquidGlassBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidGlassBackground.swift; sourceTree = "<group>"; };
 		D5A5B4071B3D1C0000ABC123 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D5A5B4091B3D1C0000ABC123 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		D5A5B40B1B3D1C0000ABC123 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		D5A5B40F1B3D1C0000ABC123 /* start-with/Models/NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/NumberFormatter.swift"; sourceTree = SOURCE_ROOT; };
+	D5A5B4111B3D1C0000ABC123 /* start-with/Models/VoiceVOXClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/VoiceVOXClient.swift"; sourceTree = SOURCE_ROOT; };
+	D5A5B4131B3D1C0000ABC123 /* start-with/Models/VoiceVOXPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "start-with/Models/VoiceVOXPlayer.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,11 +53,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE7E524E2ECE22070080AA78 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D5A5B40F1B3D1C0000ABC123 /* start-with/Models/NumberFormatter.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		D5A5B3D52B3D1C0000ABC123 = {
 			isa = PBXGroup;
 			children = (
 				D5A5B3E02B3D1C0000ABC123 /* start-with */,
 				D5A5B3DF2B3D1C0000ABC123 /* Products */,
+				CE7E524E2ECE22070080AA78 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,12 +92,22 @@
 			path = "start-with";
 			sourceTree = "<group>";
 		};
+		D5A5B3EC2B3D1C0100ABC123 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D5A5B3ED2B3D1C0100ABC123 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		D5A5B40D1B3D1C0000ABC123 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D5A5B3FF1B3D1C0000ABC123 /* NumberGenerator.swift */,
-				D5A5B4011B3D1C0000ABC123 /* JapaneseVoiceReader.swift */,
-				D5A5B4031B3D1C0000ABC123 /* AppState.swift */,
+				D5A5B3FF1B3D1C0000ABC123 /* start-with/Models/NumberGenerator.swift */,
+				D5A5B4011B3D1C0000ABC123 /* start-with/Models/JapaneseVoiceReader.swift */,
+				D5A5B4031B3D1C0000ABC123 /* start-with/Models/AppState.swift */,
+				D5A5B4111B3D1C0000ABC123 /* start-with/Models/VoiceVOXClient.swift */,
+				D5A5B4131B3D1C0000ABC123 /* start-with/Models/VoiceVOXPlayer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -98,14 +121,6 @@
 				D5A5B40B1B3D1C0000ABC123 /* ResultView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D5A5B3EC2B3D1C0100ABC123 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				D5A5B3ED2B3D1C0100ABC123 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,23 +190,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-	D5A5B3DA2B3D1C0000ABC123 /* Sources */ = {
-		isa = PBXSourcesBuildPhase;
-		buildActionMask = 2147483647;
-		files = (
-			D5A5B40C1B3D1C0000ABC123 /* ResultView.swift in Sources */,
-			D5A5B40A1B3D1C0000ABC123 /* QuestionView.swift in Sources */,
-			D5A5B4081B3D1C0000ABC123 /* SettingsView.swift in Sources */,
-			D5A5B4061B3D1C0000ABC123 /* LiquidGlassBackground.swift in Sources */,
-			D5A5B4041B3D1C0000ABC123 /* AppState.swift in Sources */,
-			D5A5B4101B3D1C0000ABC123 /* NumberFormatter.swift in Sources */,
-			D5A5B4021B3D1C0000ABC123 /* JapaneseVoiceReader.swift in Sources */,
-			D5A5B4001B3D1C0000ABC123 /* NumberGenerator.swift in Sources */,
-			D5A5B3E92B3D1C0000ABC123 /* ContentView.swift in Sources */,
-			D5A5B3E72B3D1C0000ABC123 /* AppDelegate.swift in Sources */,
-		);
-		runOnlyForDeploymentPostprocessing = 0;
-	};
+		D5A5B3DA2B3D1C0000ABC123 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5A5B40C1B3D1C0000ABC123 /* ResultView.swift in Sources */,
+				D5A5B40A1B3D1C0000ABC123 /* QuestionView.swift in Sources */,
+				D5A5B4081B3D1C0000ABC123 /* SettingsView.swift in Sources */,
+				D5A5B4061B3D1C0000ABC123 /* LiquidGlassBackground.swift in Sources */,
+				D5A5B4041B3D1C0000ABC123 /* start-with/Models/AppState.swift in Sources */,
+				D5A5B4101B3D1C0000ABC123 /* start-with/Models/NumberFormatter.swift in Sources */,
+				D5A5B4021B3D1C0000ABC123 /* start-with/Models/JapaneseVoiceReader.swift in Sources */,
+				D5A5B4001B3D1C0000ABC123 /* start-with/Models/NumberGenerator.swift in Sources */,
+				D5A5B3E92B3D1C0000ABC123 /* ContentView.swift in Sources */,
+				D5A5B3E72B3D1C0000ABC123 /* AppDelegate.swift in Sources */,
+				D5A5B4121B3D1C0000ABC123 /* start-with/Models/VoiceVOXClient.swift in Sources */,
+				D5A5B4141B3D1C0000ABC123 /* start-with/Models/VoiceVOXPlayer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -319,7 +336,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SLMF7K3S9L;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "start-with/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -346,7 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SLMF7K3S9L;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "start-with/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
