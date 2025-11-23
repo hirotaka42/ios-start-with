@@ -33,12 +33,8 @@ struct QuestionView: View {
                             speechTimer = nil
                         } else {
                             appState.isSpeaking = true
-                            // 読み上げ用の日本語テキスト（コンマなし）を生成
-                            let speechText = convertCalculationToJapaneseForSpeech(calculation)
-                            appState.voiceReader.speakWithDuration(
-                                speechText,
-                                duration: appState.speechDuration
-                            )
+                            // JapaneseVoiceReaderで計算式を日本語に変換して読み上げ
+                            appState.voiceReader.readCalculation(calculation)
                             // タイマーで再生終了を正確に追跡
                             speechTimer?.invalidate()
                             speechTimer = Timer.scheduledTimer(withTimeInterval: appState.speechDuration + 0.5, repeats: false) { _ in
@@ -204,31 +200,6 @@ struct QuestionView: View {
         }
     }
 
-    /// 計算式を日本語に変換（読み上げ用：コンマなし）
-    private func convertCalculationToJapaneseForSpeech(_ calculation: Calculation) -> String {
-        var text = "ねがいましては、"
-
-        for i in 0..<calculation.numbers.count {
-            // 数字をそのまま読み上げ用日本語に変換
-            let numberText = JapaneseVoiceReader().convertNumberToJapanese(calculation.numbers[i])
-            text += numberText + "、えんなり、"
-
-            if i < calculation.operators.count {
-                let operatorText = calculation.operators[i] == .add ? "くわえて、" : "ひいては、"
-                text += operatorText
-            }
-        }
-
-        text = text.trimmingCharacters(in: CharacterSet(charactersIn: "、"))
-        text += "、えんでは"
-
-        return text
-    }
-
-    /// 計算式を日本語に変換（表示用）
-    private func convertCalculationToJapanese(_ calculation: Calculation) -> String {
-        return convertCalculationToJapaneseForSpeech(calculation)
-    }
 }
 
 // 問題表示レイアウト（演算子を左先頭、数字を右寄せで揃える）
