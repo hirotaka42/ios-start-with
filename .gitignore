@@ -3,6 +3,7 @@
 
 ###
 **/docs/*
+**/build/*
 
 ### AzureFunctions ###
 # Azure Functions localsettings file
