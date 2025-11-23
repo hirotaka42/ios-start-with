@@ -73,6 +73,11 @@ class JapaneseVoiceReader {
             return "ぜろ"
         }
 
+        // 一桁の8は特別に処理して「はち」と読む
+        if number == 8 {
+            return "はち"
+        }
+
         let numberString = String(number)
         let digits = numberString.map { Int(String($0))! }
         let length = digits.count
@@ -86,10 +91,13 @@ class JapaneseVoiceReader {
             let trillionDigits = Array(digits[0..<trillionLength])
             // 兆が「1」だけの場合は「いっちょう」と促音を付ける
             if trillionDigits == [1] {
-                result += "いっ" + "ちょう"
+                result += "いっちょう"
             } else if trillionDigits.count == 1 && trillionDigits[0] == 4 {
                 // 4兆の場合は「よんちょう」
-                result += "よん" + "ちょう"
+                result += "よんちょう"
+            } else if trillionDigits.count == 1 && trillionDigits[0] == 8 {
+                // 8兆の場合は「はっちょう」と促音を付ける
+                result += "はっちょう"
             } else {
                 result += readGroupDigits(trillionDigits, isLastGroup: false)
                 result += "ちょう"
@@ -107,9 +115,9 @@ class JapaneseVoiceReader {
                 let occDigits = Array(digits[occStartIndex..<occEndIndexAdjusted])
                 let occValue = occDigits.reduce(0) { $0 * 10 + $1 }
                 if occValue > 0 {
-                    // 8億の場合は「はっぴゃくおく」ではなく「はちおく」
+                    // 8億の場合は「はちおく」と単一の単語として処理
                     if occDigits.count == 1 && occDigits[0] == 8 {
-                        result += "はち" + "おく"
+                        result += "はちおく"
                     } else {
                         result += readGroupDigits(occDigits, isLastGroup: false)
                         result += "おく"
@@ -172,8 +180,8 @@ class JapaneseVoiceReader {
                     // 3千の場合は「さんぜん」
                     result += "さんぜん"
                 } else if digit == 8 && isLastGroup {
-                    // 8千の場合は「はっせん」と促音を付ける
-                    result += "はっ" + "せん"
+                    // 8千の場合は「はっせん」と単一の単語として処理
+                    result += "はっせん"
                 } else {
                     result += readDigitForPosition(digit, position: position)
                 }

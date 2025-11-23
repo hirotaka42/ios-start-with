@@ -21,12 +21,38 @@ class VoiceVOXClient {
         // ステップ2: 音声パラメータを調整
         // speedScale: わずかに速度を上げて、音声の鮮明性を向上させ誤認識を防止
         // intonationScale: 若干イントネーションを上げて、明確性を向上
+
+        // 「はっちょう」「はっせん」「はち」を含む場合は強調
+        let containsHachi = text.contains("はっ") || text.contains("はち")
+
         if let speedScale = audioQuery["speedScale"] as? Double {
-            audioQuery["speedScale"] = speedScale * 0.95  // わずかに高速化
+            if containsHachi {
+                audioQuery["speedScale"] = speedScale * 0.85  // より高速化して鮮明性を大幅向上
+            } else {
+                audioQuery["speedScale"] = speedScale * 0.95
+            }
         }
         if let intonationScale = audioQuery["intonationScale"] as? Double {
-            let adjustedScale = max(0.5, min(2.0, intonationScale * 1.1))  // イントネーション微調整
+            let baseScale = containsHachi ? 1.4 : 1.1  // はち系はイントネーションを大幅に上げる
+            let adjustedScale = max(0.5, min(2.0, intonationScale * baseScale))
             audioQuery["intonationScale"] = adjustedScale
+        }
+
+        // 「はち」が含まれる場合、pauseLength（ポーズ）を調整して明確性を向上
+        if let acc = audioQuery["accent_phrases"] as? [[String: Any]] {
+            var modifiedAcc = acc
+            for i in 0..<modifiedAcc.count {
+                if var phrase = modifiedAcc[i] as? [String: Any] {
+                    // ポーズ時間を調整（はち系の単語は区切りを明確に）
+                    if text.contains("はち") || text.contains("はっ") {
+                        if let pauseLength = phrase["pause_length"] as? Double {
+                            phrase["pause_length"] = max(pauseLength, 0.1)
+                            modifiedAcc[i] = phrase
+                        }
+                    }
+                }
+            }
+            audioQuery["accent_phrases"] = modifiedAcc
         }
 
         // ステップ3: 音声を合成
