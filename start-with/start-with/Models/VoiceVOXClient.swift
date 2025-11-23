@@ -22,32 +22,51 @@ class VoiceVOXClient {
         // speedScale: わずかに速度を上げて、音声の鮮明性を向上させ誤認識を防止
         // intonationScale: 若干イントネーションを上げて、明確性を向上
 
-        // 「はっちょう」「はっせん」「はち」を含む場合は強調
+        // 「はっちょう」「はっせん」「はち」「よんまん」を含む場合は強調
         let containsHachi = text.contains("はっ") || text.contains("はち")
+        let containsYonman = text.contains("よんまん")
+        let requiresEnhancement = containsHachi || containsYonman
 
         if let speedScale = audioQuery["speedScale"] as? Double {
-            if containsHachi {
+            if requiresEnhancement {
                 audioQuery["speedScale"] = speedScale * 0.85  // より高速化して鮮明性を大幅向上
             } else {
                 audioQuery["speedScale"] = speedScale * 0.95
             }
         }
         if let intonationScale = audioQuery["intonationScale"] as? Double {
-            let baseScale = containsHachi ? 1.4 : 1.1  // はち系はイントネーションを大幅に上げる
+            let baseScale = requiresEnhancement ? 1.4 : 1.1  // はち系・よんまんはイントネーションを大幅に上げる
             let adjustedScale = max(0.5, min(2.0, intonationScale * baseScale))
             audioQuery["intonationScale"] = adjustedScale
         }
 
-        // 「はち」が含まれる場合、pauseLength（ポーズ）を調整して明確性を向上
+        // 「はち」「よんまん」が含まれる場合、pauseLength（ポーズ）を調整して明確性を向上
         if let acc = audioQuery["accent_phrases"] as? [[String: Any]] {
             var modifiedAcc = acc
             for i in 0..<modifiedAcc.count {
                 if var phrase = modifiedAcc[i] as? [String: Any] {
-                    // ポーズ時間を調整（はち系の単語は区切りを明確に）
-                    if text.contains("はち") || text.contains("はっ") {
+                    // ポーズ時間を調整（はち系・よんまんの単語は区切りを明確に）
+                    if text.contains("はち") || text.contains("はっ") || text.contains("よんまん") {
                         if let pauseLength = phrase["pause_length"] as? Double {
-                            phrase["pause_length"] = max(pauseLength, 0.1)
+                            phrase["pause_length"] = max(pauseLength, 0.15)
                             modifiedAcc[i] = phrase
+                        }
+                        // 「は」と「ち」の境界を明確にするため、vowel lengthを調整
+                        if let morph = phrase["moras"] as? [[String: Any]] {
+                            var modifiedMorph = morph
+                            for j in 0..<modifiedMorph.count {
+                                if var mora = modifiedMorph[j] as? [String: Any] {
+                                    if let moraText = mora["text"] as? String {
+                                        if moraText == "ち" || moraText == "チ" {
+                                            if let vowelLength = mora["vowel_length"] as? Double {
+                                                mora["vowel_length"] = vowelLength * 1.2
+                                                modifiedMorph[j] = mora
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            phrase["moras"] = modifiedMorph
                         }
                     }
                 }
